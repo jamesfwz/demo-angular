@@ -13,12 +13,13 @@ datatableServices.factory('Datatable', function($http) {
 
   Datatable.prototype.nextPage = function() {
     if(this.tmp.length != 0) {
-      this.items = this.items.concat(this.tmp.splice(0,5));
+      this.items = this.items.concat(this.tmp.splice(0,2));
     }
     this.loadMore();
   };
 
-  Datatable.prototype.load = function(url) {
+  Datatable.prototype.load = function(path) {
+    var url = host + path;
     if (this.busy) return;
 
     this.busy = true;
@@ -30,16 +31,17 @@ datatableServices.factory('Datatable', function($http) {
         this.lastId = data[data.length-1].id
         this.loadMore();
       }
+      window.resizable()
       this.busy = false;
     }.bind(this));
   }
 
   Datatable.prototype.loadMore = function() {
-    if (this.busy || this.tmp.length > 0) return;
+    if (this.busy || this.tmp.length > 50) return;
 
     this.busy = true;
 
-    var url = "datatables.json?after="+this.lastId+"&limit="+this.loadMoreLimit;  
+    var url = host + "datatables.json?after="+this.lastId+"&limit="+this.loadMoreLimit;  
 
     $http.get(url).success(function(data) {
       if(data.length > 0){
@@ -56,8 +58,7 @@ datatableServices.factory('Datatable', function($http) {
   };
 
   Datatable.prototype.search = function(filter) {
-    var url  = "datatables.json";
-    this.load(url)
+    this.load("datatables.json")
   };
 
   return Datatable;

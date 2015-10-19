@@ -1,0 +1,20 @@
+<div ng-include src="'templates/shared/_search.html'"></div>
+
+<div id="datatables-index-container" class="included-search">
+  <h1>Listing</h1>
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered resizable">
+      <thead>
+        <tr>
+          <th ng-repeat="(key,val) in datatable.items[0]" ng-bind="key"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll='datatable.nextPage() | filter:query' infinite-scroll-disabled='datatable.busy' infinite-scroll-distance='1'>
+        <tr class="datatables" ng-repeat="(index,data) in datatable.filteredItems = (datatable.items | filter:query) track by $index" ng-dblClick="appendSub(data)">
+          <td ng-repeat="val in data" ng-bind="val"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>            
+  <div class="text-center" ng-show="datatable.busy">Loading data...</div>
+</div>

@@ -1,0 +1,11 @@
+#datatables-index-container table.table {
+  width: 25000px;
+}
+
+#datatables-index-container table.table th {
+  text-transform: capitalize;
+}
+
+#datatables-index-container table.table th:first-child {
+  width: 50px !important;
+}

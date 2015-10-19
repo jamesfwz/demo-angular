@@ -1,0 +1,8 @@
+.table-hover tr{
+  cursor: pointer;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  min-height: 0.01%;
+}

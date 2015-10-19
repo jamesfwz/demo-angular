@@ -1,6 +1,7 @@
 'use strict';
 
-var demoApp = angular.module('demoApp', ['ngRoute'])
+var host = "http://demo-site-angular.herokuapp.com/"
+var demoApp = angular.module('demoApp', ['ngRoute','datatableServices','infinite-scroll'])
 
 demoApp.config(function ($routeProvider) {
   $routeProvider.
