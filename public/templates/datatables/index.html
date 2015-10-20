@@ -6,12 +6,12 @@
     <table class="table table-hover table-bordered resizable">
       <thead>
         <tr>
-          <th ng-repeat="(key,val) in datatable.items[0]" ng-bind="key"></th>
+          <th ng-repeat="(key,val) in datatable.items[0]" ng-bind="::key"></th>
         </tr>
       </thead>
       <tbody infinite-scroll='datatable.nextPage() | filter:query' infinite-scroll-disabled='datatable.busy' infinite-scroll-distance='1'>
-        <tr class="datatables" ng-repeat="(index,data) in datatable.filteredItems = (datatable.items | filter:query) track by $index" ng-dblClick="appendSub(data)">
-          <td ng-repeat="val in data" ng-bind="val"></td>
+        <tr class="datatables" ng-repeat="data in datatable.filteredItems = (datatable.items | filter:query) track by $index" ng-dblClick="appendSub(data)">
+          <td ng-repeat="val in data" ng-bind="::val"></td>
         </tr>
       </tbody>
     </table>
