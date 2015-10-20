@@ -5,15 +5,15 @@ datatableServices.factory('Datatable', function($http) {
     this.items = [];
     this.tmp = []
     this.busy = false;
-    this.initLimit = 30;
-    this.loadMoreLimit = 100;
+    this.initLimit = 40;
+    this.loadMoreLimit = 80;
     this.lastId = 0
     this.load("datatables.json?limit="+this.initLimit)
   };
 
   Datatable.prototype.nextPage = function() {
     if(this.tmp.length != 0) {
-      this.items = this.items.concat(this.tmp.splice(0,2));
+      this.items = this.items.concat(this.tmp.splice(0,5));
     }
     this.loadMore();
   };
